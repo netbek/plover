@@ -1,5 +1,5 @@
 ---
-title: "Vega"
+title: "An approach to using Vega in R Markdown"
 output:
   html_document:
     includes:
@@ -47,10 +47,32 @@ data = iris %>%
 cat(paste('<script>var data = ', toJSON(data), ';</script>', sep = ""))
 ```
 
-<div id="vis"></div>
+<div id="single"></div>
 
-```{js render_visualisation}
-// Generate Vega spec
+```{js render_single}
+// Generate Vega-Lite spec
+var spec = toVega(data)
+  .config(theme)
+  .circle()
+  .color('species', 'nominal')
+  .x('petalLength')
+  .y('sepalLength')
+  .spec;
+
+// Declare Vega embed config
+var opts = {
+  actions: false,
+  renderer: 'canvas'
+};
+
+// Embed visualisation
+vegaEmbed("#single", spec, opts);
+```
+
+<div id="multiple"></div>
+
+```{js render_multiple}
+// Generate Vega-Lite spec
 var spec = toVega(data)
   .config(theme)
   .circle()
@@ -67,5 +89,5 @@ var opts = {
 };
 
 // Embed visualisation
-vegaEmbed("#vis", spec, opts);
+vegaEmbed("#multiple", spec, opts);
 ```
