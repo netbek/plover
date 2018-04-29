@@ -2,6 +2,10 @@
 
 An approach to using Vega in R Markdown.
 
+## Demo
+
+[netbek.github.io/plover](https://netbek.github.io/plover)
+
 ## Installation
 
 1. Install system dependencies:

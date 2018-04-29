@@ -12,9 +12,3 @@ nbproject
 
 # GH pages
 .publish
-
-# Dist
-vega/index.html
-vega/css/
-vega/js/
-vega/vendor/

@@ -11,6 +11,7 @@
     "css": "node-sass-chokidar vega/src/css/ -o vega/css && postcss vega/css/*.css --use autoprefixer -d vega/css && cleancss -o vega/css/bundle.min.css vega/css/bundle.css",
     "js": "webpack --entry ./vega/src/js/bundle.js --output-path ./vega/js --output-filename bundle.min.js --output-library-target umd --hide-modules",
     "build": "npm run css && npm run js",
+    "deploy": "gh-pages -d vega",
     "postinstall": "npm run build"
   },
   "author": {
@@ -47,6 +48,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-2": "^6.24.1",
     "clean-css-cli": "^4.1.11",
+    "gh-pages": "^1.1.0",
     "node-sass-chokidar": "^1.2.2",
     "postcss-cli": "^5.0.0",
     "to-vega": "^0.1.6",
