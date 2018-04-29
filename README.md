@@ -38,23 +38,11 @@ An approach to using Vega in R Markdown.
 
 ## Usage
 
-To get started, open `/vega/index.Rmd` in RStudio, and knit the document.
+To get started, open `/vega/index.Rmd` in RStudio.
 
-A Vega-Lite spec can be supplied in long-form, or generated with the To-Vega library, as done here.
+A Vega-Lite spec can be supplied in long-form, or generated with the To-Vega library, as done in this example.
 
-To theme the visualisation, edit `/vega/theme.json`, then knit the document.
-
-After making changes to `/vega/src/css`, rebuild the assets:
-
-```
-npm run css
-```
-
-After making changes to `/vega/src/js`, rebuild the assets:
-
-```
-npm run js
-```
+A global theme is stored in `/vega/theme.json`. Remember to knit the document after making changes.
 
 ## Resources
 

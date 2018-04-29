@@ -1,5 +1,5 @@
 ---
-title: "Vega"
+title: "An approach to using Vega in R Markdown"
 output:
   html_document:
     includes:
@@ -50,7 +50,7 @@ cat(paste('<script>var data = ', toJSON(data), ';</script>', sep = ""))
 <div id="vis"></div>
 
 ```{js render_visualisation}
-// Generate Vega spec
+// Generate Vega-Lite spec
 var spec = toVega(data)
   .config(theme)
   .circle()

@@ -11,7 +11,7 @@
 
 
 
-<title>Vega</title>
+<title>An approach to using Vega in R Markdown</title>
 
 <script src="vendor/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -119,7 +119,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Vega</h1>
+<h1 class="title toc-ignore">An approach to using Vega in R Markdown</h1>
 
 </div>
 
@@ -145,7 +145,7 @@ cat(paste(&#39;&lt;script&gt;var data = &#39;, toJSON(data), &#39;;&lt;/script&g
 <div id="vis">
 
 </div>
-<pre class="js"><code>// Generate Vega spec
+<pre class="js"><code>// Generate Vega-Lite spec
 var spec = toVega(data)
   .config(theme)
   .circle()
@@ -164,7 +164,7 @@ var opts = {
 // Embed visualisation
 vegaEmbed(&quot;#vis&quot;, spec, opts);</code></pre>
 <script type="text/javascript">
-// Generate Vega spec
+// Generate Vega-Lite spec
 var spec = toVega(data)
   .config(theme)
   .circle()
