@@ -47,14 +47,13 @@ data = iris %>%
 cat(paste('<script>var data = ', toJSON(data), ';</script>', sep = ""))
 ```
 
-<div id="vis"></div>
+<div id="single"></div>
 
-```{js render_visualisation}
+```{js render_single}
 // Generate Vega-Lite spec
 var spec = toVega(data)
   .config(theme)
   .circle()
-  .column('species', 'nominal')
   .color('species', 'nominal')
   .x('petalLength')
   .y('sepalLength')
@@ -67,5 +66,28 @@ var opts = {
 };
 
 // Embed visualisation
-vegaEmbed("#vis", spec, opts);
+vegaEmbed("#single", spec, opts);
+```
+
+<div id="multiple"></div>
+
+```{js render_multiple}
+// Generate Vega-Lite spec
+var spec = toVega(data)
+  .config(theme)
+  .column('species', 'nominal')
+  .circle()
+  .color('species', 'nominal', {legend: null})
+  .x('petalLength')
+  .y('sepalLength')
+  .spec;
+
+// Declare Vega embed config
+var opts = {
+  actions: false,
+  renderer: 'canvas'
+};
+
+// Embed visualisation
+vegaEmbed("#multiple", spec, opts);
 ```
