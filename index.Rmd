@@ -1,0 +1,71 @@
+---
+title: "Vega"
+output:
+  html_document:
+    includes:
+      in_header: includes/header.html
+    self_contained: false
+    mathjax: null
+    lib_dir: vendor
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+str_lcfirst <- function(str) {
+  gsub("(^[[:alnum:]]{0,1})", "\\L\\1", str, perl = TRUE)
+}
+
+str_pascal_case <- function(str) {
+  gsub("(^|[^[:alnum:]])([[:alnum:]])", "\\U\\2", str, perl = TRUE)
+}
+
+str_camel_case <- function(str) {
+  str_lcfirst(str_pascal_case(str))
+}
+```
+
+```{r add_theme, results = "asis"}
+library("jsonlite")
+
+# Load Vega theme config
+theme <- fromJSON("theme.json")
+
+# Declare global JS var for Vega theme
+cat(paste('<script>var theme = ', toJSON(theme, auto_unbox = TRUE), ';</script>', sep = ""))
+```
+
+```{r add_data, results = "asis"}
+library("jsonlite")
+library("purrr", warn.conflicts = FALSE)
+
+# Use iris dataset, rename columns for JS
+data = iris %>%
+  set_names(~ str_camel_case(.))
+
+# Declare global JS var for Vega data
+cat(paste('<script>var data = ', toJSON(data), ';</script>', sep = ""))
+```
+
+<div id="vis"></div>
+
+```{js render_visualisation}
+// Generate Vega spec
+var spec = toVega(data)
+  .config(theme)
+  .circle()
+  .column('species', 'nominal')
+  .color('species', 'nominal')
+  .x('petalLength')
+  .y('sepalLength')
+  .spec;
+
+// Declare Vega embed config
+var opts = {
+  actions: false,
+  renderer: 'canvas'
+};
+
+// Embed visualisation
+vegaEmbed("#vis", spec, opts);
+```

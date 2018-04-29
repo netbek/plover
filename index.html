@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Vega</title>
+
+<script src="vendor/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="vendor/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="vendor/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="vendor/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="vendor/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="vendor/navigation-1.1/tabsets.js"></script>
+<link href="vendor/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="vendor/highlightjs-9.12.0/highlight.js"></script>
+<link rel="stylesheet" href="css/bundle.min.css"/>
+<script src="js/bundle.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Vega</h1>
+
+</div>
+
+
+<pre class="r"><code>library(&quot;jsonlite&quot;)
+
+# Load Vega theme config
+theme &lt;- fromJSON(&quot;theme.json&quot;)
+
+# Declare global JS var for Vega theme
+cat(paste(&#39;&lt;script&gt;var theme = &#39;, toJSON(theme, auto_unbox = TRUE), &#39;;&lt;/script&gt;&#39;, sep = &quot;&quot;))</code></pre>
+<script>var theme = {"axis":{"domainColor":"#252525","domainWidth":1,"gridColor":"#CCC","labelFont":"Consolas, \"Liberation Mono\", Menlo, Courier, monospace","labelFontSize":12,"titleFont":"Consolas, \"Liberation Mono\", Menlo, Courier, monospace","titleFontSize":12,"titleFontWeight":"normal"},"legend":{"labelFont":"Consolas, \"Liberation Mono\", Menlo, Courier, monospace","labelFontSize":12,"titleFont":"Consolas, \"Liberation Mono\", Menlo, Courier, monospace","titleFontSize":12},"style":{"guide-title":{"font":"Consolas, \"Liberation Mono\", Menlo, Courier, monospace","fontSize":12},"guide-label":{"font":"Consolas, \"Liberation Mono\", Menlo, Courier, monospace","fontSize":12}}};</script>
+<pre class="r"><code>library(&quot;jsonlite&quot;)
+library(&quot;purrr&quot;, warn.conflicts = FALSE)
+
+# Use iris dataset, rename columns for JS
+data = iris %&gt;%
+  set_names(~ str_camel_case(.))
+
+# Declare global JS var for Vega data
+cat(paste(&#39;&lt;script&gt;var data = &#39;, toJSON(data), &#39;;&lt;/script&gt;&#39;, sep = &quot;&quot;))</code></pre>
+<script>var data = [{"sepalLength":5.1,"sepalWidth":3.5,"petalLength":1.4,"petalWidth":0.2,"species":"setosa"},{"sepalLength":4.9,"sepalWidth":3,"petalLength":1.4,"petalWidth":0.2,"species":"setosa"},{"sepalLength":4.7,"sepalWidth":3.2,"petalLength":1.3,"petalWidth":0.2,"species":"setosa"},{"sepalLength":4.6,"sepalWidth":3.1,"petalLength":1.5,"petalWidth":0.2,"species":"setosa"},{"sepalLength":5,"sepalWidth":3.6,"petalLength":1.4,"petalWidth":0.2,"species":"setosa"},{"sepalLength":5.4,"sepalWidth":3.9,"petalLength":1.7,"petalWidth":0.4,"species":"setosa"},{"sepalLength":4.6,"sepalWidth":3.4,"petalLength":1.4,"petalWidth":0.3,"species":"setosa"},{"sepalLength":5,"sepalWidth":3.4,"petalLength":1.5,"petalWidth":0.2,"species":"setosa"},{"sepalLength":4.4,"sepalWidth":2.9,"petalLength":1.4,"petalWidth":0.2,"species":"setosa"},{"sepalLength":4.9,"sepalWidth":3.1,"petalLength":1.5,"petalWidth":0.1,"species":"setosa"},{"sepalLength":5.4,"sepalWidth":3.7,"petalLength":1.5,"petalWidth":0.2,"species":"setosa"},{"sepalLength":4.8,"sepalWidth":3.4,"petalLength":1.6,"petalWidth":0.2,"species":"setosa"},{"sepalLength":4.8,"sepalWidth":3,"petalLength":1.4,"petalWidth":0.1,"species":"setosa"},{"sepalLength":4.3,"sepalWidth":3,"petalLength":1.1,"petalWidth":0.1,"species":"setosa"},{"sepalLength":5.8,"sepalWidth":4,"petalLength":1.2,"petalWidth":0.2,"species":"setosa"},{"sepalLength":5.7,"sepalWidth":4.4,"petalLength":1.5,"petalWidth":0.4,"species":"setosa"},{"sepalLength":5.4,"sepalWidth":3.9,"petalLength":1.3,"petalWidth":0.4,"species":"setosa"},{"sepalLength":5.1,"sepalWidth":3.5,"petalLength":1.4,"petalWidth":0.3,"species":"setosa"},{"sepalLength":5.7,"sepalWidth":3.8,"petalLength":1.7,"petalWidth":0.3,"species":"setosa"},{"sepalLength":5.1,"sepalWidth":3.8,"petalLength":1.5,"petalWidth":0.3,"species":"setosa"},{"sepalLength":5.4,"sepalWidth":3.4,"petalLength":1.7,"petalWidth":0.2,"species":"setosa"},{"sepalLength":5.1,"sepalWidth":3.7,"petalLength":1.5,"petalWidth":0.4,"species":"setosa"},{"sepalLength":4.6,"sepalWidth":3.6,"petalLength":1,"petalWidth":0.2,"species":"setosa"},{"sepalLength":5.1,"sepalWidth":3.3,"petalLength":1.7,"petalWidth":0.5,"species":"setosa"},{"sepalLength":4.8,"sepalWidth":3.4,"petalLength":1.9,"petalWidth":0.2,"species":"setosa"},{"sepalLength":5,"sepalWidth":3,"petalLength":1.6,"petalWidth":0.2,"species":"setosa"},{"sepalLength":5,"sepalWidth":3.4,"petalLength":1.6,"petalWidth":0.4,"species":"setosa"},{"sepalLength":5.2,"sepalWidth":3.5,"petalLength":1.5,"petalWidth":0.2,"species":"setosa"},{"sepalLength":5.2,"sepalWidth":3.4,"petalLength":1.4,"petalWidth":0.2,"species":"setosa"},{"sepalLength":4.7,"sepalWidth":3.2,"petalLength":1.6,"petalWidth":0.2,"species":"setosa"},{"sepalLength":4.8,"sepalWidth":3.1,"petalLength":1.6,"petalWidth":0.2,"species":"setosa"},{"sepalLength":5.4,"sepalWidth":3.4,"petalLength":1.5,"petalWidth":0.4,"species":"setosa"},{"sepalLength":5.2,"sepalWidth":4.1,"petalLength":1.5,"petalWidth":0.1,"species":"setosa"},{"sepalLength":5.5,"sepalWidth":4.2,"petalLength":1.4,"petalWidth":0.2,"species":"setosa"},{"sepalLength":4.9,"sepalWidth":3.1,"petalLength":1.5,"petalWidth":0.2,"species":"setosa"},{"sepalLength":5,"sepalWidth":3.2,"petalLength":1.2,"petalWidth":0.2,"species":"setosa"},{"sepalLength":5.5,"sepalWidth":3.5,"petalLength":1.3,"petalWidth":0.2,"species":"setosa"},{"sepalLength":4.9,"sepalWidth":3.6,"petalLength":1.4,"petalWidth":0.1,"species":"setosa"},{"sepalLength":4.4,"sepalWidth":3,"petalLength":1.3,"petalWidth":0.2,"species":"setosa"},{"sepalLength":5.1,"sepalWidth":3.4,"petalLength":1.5,"petalWidth":0.2,"species":"setosa"},{"sepalLength":5,"sepalWidth":3.5,"petalLength":1.3,"petalWidth":0.3,"species":"setosa"},{"sepalLength":4.5,"sepalWidth":2.3,"petalLength":1.3,"petalWidth":0.3,"species":"setosa"},{"sepalLength":4.4,"sepalWidth":3.2,"petalLength":1.3,"petalWidth":0.2,"species":"setosa"},{"sepalLength":5,"sepalWidth":3.5,"petalLength":1.6,"petalWidth":0.6,"species":"setosa"},{"sepalLength":5.1,"sepalWidth":3.8,"petalLength":1.9,"petalWidth":0.4,"species":"setosa"},{"sepalLength":4.8,"sepalWidth":3,"petalLength":1.4,"petalWidth":0.3,"species":"setosa"},{"sepalLength":5.1,"sepalWidth":3.8,"petalLength":1.6,"petalWidth":0.2,"species":"setosa"},{"sepalLength":4.6,"sepalWidth":3.2,"petalLength":1.4,"petalWidth":0.2,"species":"setosa"},{"sepalLength":5.3,"sepalWidth":3.7,"petalLength":1.5,"petalWidth":0.2,"species":"setosa"},{"sepalLength":5,"sepalWidth":3.3,"petalLength":1.4,"petalWidth":0.2,"species":"setosa"},{"sepalLength":7,"sepalWidth":3.2,"petalLength":4.7,"petalWidth":1.4,"species":"versicolor"},{"sepalLength":6.4,"sepalWidth":3.2,"petalLength":4.5,"petalWidth":1.5,"species":"versicolor"},{"sepalLength":6.9,"sepalWidth":3.1,"petalLength":4.9,"petalWidth":1.5,"species":"versicolor"},{"sepalLength":5.5,"sepalWidth":2.3,"petalLength":4,"petalWidth":1.3,"species":"versicolor"},{"sepalLength":6.5,"sepalWidth":2.8,"petalLength":4.6,"petalWidth":1.5,"species":"versicolor"},{"sepalLength":5.7,"sepalWidth":2.8,"petalLength":4.5,"petalWidth":1.3,"species":"versicolor"},{"sepalLength":6.3,"sepalWidth":3.3,"petalLength":4.7,"petalWidth":1.6,"species":"versicolor"},{"sepalLength":4.9,"sepalWidth":2.4,"petalLength":3.3,"petalWidth":1,"species":"versicolor"},{"sepalLength":6.6,"sepalWidth":2.9,"petalLength":4.6,"petalWidth":1.3,"species":"versicolor"},{"sepalLength":5.2,"sepalWidth":2.7,"petalLength":3.9,"petalWidth":1.4,"species":"versicolor"},{"sepalLength":5,"sepalWidth":2,"petalLength":3.5,"petalWidth":1,"species":"versicolor"},{"sepalLength":5.9,"sepalWidth":3,"petalLength":4.2,"petalWidth":1.5,"species":"versicolor"},{"sepalLength":6,"sepalWidth":2.2,"petalLength":4,"petalWidth":1,"species":"versicolor"},{"sepalLength":6.1,"sepalWidth":2.9,"petalLength":4.7,"petalWidth":1.4,"species":"versicolor"},{"sepalLength":5.6,"sepalWidth":2.9,"petalLength":3.6,"petalWidth":1.3,"species":"versicolor"},{"sepalLength":6.7,"sepalWidth":3.1,"petalLength":4.4,"petalWidth":1.4,"species":"versicolor"},{"sepalLength":5.6,"sepalWidth":3,"petalLength":4.5,"petalWidth":1.5,"species":"versicolor"},{"sepalLength":5.8,"sepalWidth":2.7,"petalLength":4.1,"petalWidth":1,"species":"versicolor"},{"sepalLength":6.2,"sepalWidth":2.2,"petalLength":4.5,"petalWidth":1.5,"species":"versicolor"},{"sepalLength":5.6,"sepalWidth":2.5,"petalLength":3.9,"petalWidth":1.1,"species":"versicolor"},{"sepalLength":5.9,"sepalWidth":3.2,"petalLength":4.8,"petalWidth":1.8,"species":"versicolor"},{"sepalLength":6.1,"sepalWidth":2.8,"petalLength":4,"petalWidth":1.3,"species":"versicolor"},{"sepalLength":6.3,"sepalWidth":2.5,"petalLength":4.9,"petalWidth":1.5,"species":"versicolor"},{"sepalLength":6.1,"sepalWidth":2.8,"petalLength":4.7,"petalWidth":1.2,"species":"versicolor"},{"sepalLength":6.4,"sepalWidth":2.9,"petalLength":4.3,"petalWidth":1.3,"species":"versicolor"},{"sepalLength":6.6,"sepalWidth":3,"petalLength":4.4,"petalWidth":1.4,"species":"versicolor"},{"sepalLength":6.8,"sepalWidth":2.8,"petalLength":4.8,"petalWidth":1.4,"species":"versicolor"},{"sepalLength":6.7,"sepalWidth":3,"petalLength":5,"petalWidth":1.7,"species":"versicolor"},{"sepalLength":6,"sepalWidth":2.9,"petalLength":4.5,"petalWidth":1.5,"species":"versicolor"},{"sepalLength":5.7,"sepalWidth":2.6,"petalLength":3.5,"petalWidth":1,"species":"versicolor"},{"sepalLength":5.5,"sepalWidth":2.4,"petalLength":3.8,"petalWidth":1.1,"species":"versicolor"},{"sepalLength":5.5,"sepalWidth":2.4,"petalLength":3.7,"petalWidth":1,"species":"versicolor"},{"sepalLength":5.8,"sepalWidth":2.7,"petalLength":3.9,"petalWidth":1.2,"species":"versicolor"},{"sepalLength":6,"sepalWidth":2.7,"petalLength":5.1,"petalWidth":1.6,"species":"versicolor"},{"sepalLength":5.4,"sepalWidth":3,"petalLength":4.5,"petalWidth":1.5,"species":"versicolor"},{"sepalLength":6,"sepalWidth":3.4,"petalLength":4.5,"petalWidth":1.6,"species":"versicolor"},{"sepalLength":6.7,"sepalWidth":3.1,"petalLength":4.7,"petalWidth":1.5,"species":"versicolor"},{"sepalLength":6.3,"sepalWidth":2.3,"petalLength":4.4,"petalWidth":1.3,"species":"versicolor"},{"sepalLength":5.6,"sepalWidth":3,"petalLength":4.1,"petalWidth":1.3,"species":"versicolor"},{"sepalLength":5.5,"sepalWidth":2.5,"petalLength":4,"petalWidth":1.3,"species":"versicolor"},{"sepalLength":5.5,"sepalWidth":2.6,"petalLength":4.4,"petalWidth":1.2,"species":"versicolor"},{"sepalLength":6.1,"sepalWidth":3,"petalLength":4.6,"petalWidth":1.4,"species":"versicolor"},{"sepalLength":5.8,"sepalWidth":2.6,"petalLength":4,"petalWidth":1.2,"species":"versicolor"},{"sepalLength":5,"sepalWidth":2.3,"petalLength":3.3,"petalWidth":1,"species":"versicolor"},{"sepalLength":5.6,"sepalWidth":2.7,"petalLength":4.2,"petalWidth":1.3,"species":"versicolor"},{"sepalLength":5.7,"sepalWidth":3,"petalLength":4.2,"petalWidth":1.2,"species":"versicolor"},{"sepalLength":5.7,"sepalWidth":2.9,"petalLength":4.2,"petalWidth":1.3,"species":"versicolor"},{"sepalLength":6.2,"sepalWidth":2.9,"petalLength":4.3,"petalWidth":1.3,"species":"versicolor"},{"sepalLength":5.1,"sepalWidth":2.5,"petalLength":3,"petalWidth":1.1,"species":"versicolor"},{"sepalLength":5.7,"sepalWidth":2.8,"petalLength":4.1,"petalWidth":1.3,"species":"versicolor"},{"sepalLength":6.3,"sepalWidth":3.3,"petalLength":6,"petalWidth":2.5,"species":"virginica"},{"sepalLength":5.8,"sepalWidth":2.7,"petalLength":5.1,"petalWidth":1.9,"species":"virginica"},{"sepalLength":7.1,"sepalWidth":3,"petalLength":5.9,"petalWidth":2.1,"species":"virginica"},{"sepalLength":6.3,"sepalWidth":2.9,"petalLength":5.6,"petalWidth":1.8,"species":"virginica"},{"sepalLength":6.5,"sepalWidth":3,"petalLength":5.8,"petalWidth":2.2,"species":"virginica"},{"sepalLength":7.6,"sepalWidth":3,"petalLength":6.6,"petalWidth":2.1,"species":"virginica"},{"sepalLength":4.9,"sepalWidth":2.5,"petalLength":4.5,"petalWidth":1.7,"species":"virginica"},{"sepalLength":7.3,"sepalWidth":2.9,"petalLength":6.3,"petalWidth":1.8,"species":"virginica"},{"sepalLength":6.7,"sepalWidth":2.5,"petalLength":5.8,"petalWidth":1.8,"species":"virginica"},{"sepalLength":7.2,"sepalWidth":3.6,"petalLength":6.1,"petalWidth":2.5,"species":"virginica"},{"sepalLength":6.5,"sepalWidth":3.2,"petalLength":5.1,"petalWidth":2,"species":"virginica"},{"sepalLength":6.4,"sepalWidth":2.7,"petalLength":5.3,"petalWidth":1.9,"species":"virginica"},{"sepalLength":6.8,"sepalWidth":3,"petalLength":5.5,"petalWidth":2.1,"species":"virginica"},{"sepalLength":5.7,"sepalWidth":2.5,"petalLength":5,"petalWidth":2,"species":"virginica"},{"sepalLength":5.8,"sepalWidth":2.8,"petalLength":5.1,"petalWidth":2.4,"species":"virginica"},{"sepalLength":6.4,"sepalWidth":3.2,"petalLength":5.3,"petalWidth":2.3,"species":"virginica"},{"sepalLength":6.5,"sepalWidth":3,"petalLength":5.5,"petalWidth":1.8,"species":"virginica"},{"sepalLength":7.7,"sepalWidth":3.8,"petalLength":6.7,"petalWidth":2.2,"species":"virginica"},{"sepalLength":7.7,"sepalWidth":2.6,"petalLength":6.9,"petalWidth":2.3,"species":"virginica"},{"sepalLength":6,"sepalWidth":2.2,"petalLength":5,"petalWidth":1.5,"species":"virginica"},{"sepalLength":6.9,"sepalWidth":3.2,"petalLength":5.7,"petalWidth":2.3,"species":"virginica"},{"sepalLength":5.6,"sepalWidth":2.8,"petalLength":4.9,"petalWidth":2,"species":"virginica"},{"sepalLength":7.7,"sepalWidth":2.8,"petalLength":6.7,"petalWidth":2,"species":"virginica"},{"sepalLength":6.3,"sepalWidth":2.7,"petalLength":4.9,"petalWidth":1.8,"species":"virginica"},{"sepalLength":6.7,"sepalWidth":3.3,"petalLength":5.7,"petalWidth":2.1,"species":"virginica"},{"sepalLength":7.2,"sepalWidth":3.2,"petalLength":6,"petalWidth":1.8,"species":"virginica"},{"sepalLength":6.2,"sepalWidth":2.8,"petalLength":4.8,"petalWidth":1.8,"species":"virginica"},{"sepalLength":6.1,"sepalWidth":3,"petalLength":4.9,"petalWidth":1.8,"species":"virginica"},{"sepalLength":6.4,"sepalWidth":2.8,"petalLength":5.6,"petalWidth":2.1,"species":"virginica"},{"sepalLength":7.2,"sepalWidth":3,"petalLength":5.8,"petalWidth":1.6,"species":"virginica"},{"sepalLength":7.4,"sepalWidth":2.8,"petalLength":6.1,"petalWidth":1.9,"species":"virginica"},{"sepalLength":7.9,"sepalWidth":3.8,"petalLength":6.4,"petalWidth":2,"species":"virginica"},{"sepalLength":6.4,"sepalWidth":2.8,"petalLength":5.6,"petalWidth":2.2,"species":"virginica"},{"sepalLength":6.3,"sepalWidth":2.8,"petalLength":5.1,"petalWidth":1.5,"species":"virginica"},{"sepalLength":6.1,"sepalWidth":2.6,"petalLength":5.6,"petalWidth":1.4,"species":"virginica"},{"sepalLength":7.7,"sepalWidth":3,"petalLength":6.1,"petalWidth":2.3,"species":"virginica"},{"sepalLength":6.3,"sepalWidth":3.4,"petalLength":5.6,"petalWidth":2.4,"species":"virginica"},{"sepalLength":6.4,"sepalWidth":3.1,"petalLength":5.5,"petalWidth":1.8,"species":"virginica"},{"sepalLength":6,"sepalWidth":3,"petalLength":4.8,"petalWidth":1.8,"species":"virginica"},{"sepalLength":6.9,"sepalWidth":3.1,"petalLength":5.4,"petalWidth":2.1,"species":"virginica"},{"sepalLength":6.7,"sepalWidth":3.1,"petalLength":5.6,"petalWidth":2.4,"species":"virginica"},{"sepalLength":6.9,"sepalWidth":3.1,"petalLength":5.1,"petalWidth":2.3,"species":"virginica"},{"sepalLength":5.8,"sepalWidth":2.7,"petalLength":5.1,"petalWidth":1.9,"species":"virginica"},{"sepalLength":6.8,"sepalWidth":3.2,"petalLength":5.9,"petalWidth":2.3,"species":"virginica"},{"sepalLength":6.7,"sepalWidth":3.3,"petalLength":5.7,"petalWidth":2.5,"species":"virginica"},{"sepalLength":6.7,"sepalWidth":3,"petalLength":5.2,"petalWidth":2.3,"species":"virginica"},{"sepalLength":6.3,"sepalWidth":2.5,"petalLength":5,"petalWidth":1.9,"species":"virginica"},{"sepalLength":6.5,"sepalWidth":3,"petalLength":5.2,"petalWidth":2,"species":"virginica"},{"sepalLength":6.2,"sepalWidth":3.4,"petalLength":5.4,"petalWidth":2.3,"species":"virginica"},{"sepalLength":5.9,"sepalWidth":3,"petalLength":5.1,"petalWidth":1.8,"species":"virginica"}];</script>
+<div id="vis">
+
+</div>
+<pre class="js"><code>// Generate Vega spec
+var spec = toVega(data)
+  .config(theme)
+  .circle()
+  .column(&#39;species&#39;, &#39;nominal&#39;)
+  .color(&#39;species&#39;, &#39;nominal&#39;)
+  .x(&#39;petalLength&#39;)
+  .y(&#39;sepalLength&#39;)
+  .spec;
+
+// Declare Vega embed config
+var opts = {
+  actions: false,
+  renderer: &#39;canvas&#39;
+};
+
+// Embed visualisation
+vegaEmbed(&quot;#vis&quot;, spec, opts);</code></pre>
+<script type="text/javascript">
+// Generate Vega spec
+var spec = toVega(data)
+  .config(theme)
+  .circle()
+  .column('species', 'nominal')
+  .color('species', 'nominal')
+  .x('petalLength')
+  .y('sepalLength')
+  .spec;
+
+// Declare Vega embed config
+var opts = {
+  actions: false,
+  renderer: 'canvas'
+};
+
+// Embed visualisation
+vegaEmbed("#vis", spec, opts);
+</script>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+
+</body>
+</html>

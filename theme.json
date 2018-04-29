@@ -1,0 +1,28 @@
+{
+  "axis": {
+    "domainColor": "#252525",
+    "domainWidth": 1,
+    "gridColor": "#CCC",
+    "labelFont": "Consolas, \"Liberation Mono\", Menlo, Courier, monospace",
+    "labelFontSize": 12,
+    "titleFont": "Consolas, \"Liberation Mono\", Menlo, Courier, monospace",
+    "titleFontSize": 12,
+    "titleFontWeight": "normal"
+  },
+  "legend": {
+    "labelFont": "Consolas, \"Liberation Mono\", Menlo, Courier, monospace",
+    "labelFontSize": 12,
+    "titleFont": "Consolas, \"Liberation Mono\", Menlo, Courier, monospace",
+    "titleFontSize": 12
+  },
+  "style": {
+    "guide-title": {
+      "font": "Consolas, \"Liberation Mono\", Menlo, Courier, monospace",
+      "fontSize": 12
+    },
+    "guide-label": {
+      "font": "Consolas, \"Liberation Mono\", Menlo, Courier, monospace",
+      "fontSize": 12
+    }
+  }
+}
