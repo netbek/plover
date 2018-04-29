@@ -25,7 +25,17 @@ str_camel_case <- function(str) {
 }
 ```
 
-```{r results = "asis"}
+```{r add_theme, results = "asis"}
+library("jsonlite")
+
+# Load Vega theme config
+theme <- fromJSON("theme.json")
+
+# Declare global JS var for Vega theme
+cat(paste('<script>var theme = ', toJSON(theme, auto_unbox = TRUE), ';</script>', sep = ""))
+```
+
+```{r add_data, results = "asis"}
 library("jsonlite")
 library("purrr", warn.conflicts = FALSE)
 
@@ -33,21 +43,15 @@ library("purrr", warn.conflicts = FALSE)
 data = iris %>%
   set_names(~ str_camel_case(.))
 
-# Load Vega theme config
-theme <- fromJSON("theme.json")
-
-# Create global JS var for theme
-cat(paste('<script>var theme = ', toJSON(theme, auto_unbox = TRUE), ';</script>', sep = ""))
-
-# Create global JS var for data
-cat(paste('<script>var dataIris = ', toJSON(data), ';</script>', sep = ""))
+# Declare global JS var for Vega data
+cat(paste('<script>var data = ', toJSON(data), ';</script>', sep = ""))
 ```
 
 <div id="vis"></div>
 
-```{js}
+```{js render_visualisation}
 // Generate Vega spec
-var spec = toVega(dataIris)
+var spec = toVega(data)
   .config(theme)
   .circle()
   .column('species', 'nominal')
@@ -56,11 +60,12 @@ var spec = toVega(dataIris)
   .y('sepalLength')
   .spec;
 
+// Declare Vega embed config
 var opts = {
   actions: false,
   renderer: 'canvas'
 };
 
-// Render visualisation with Vega
+// Embed visualisation
 vegaEmbed("#vis", spec, opts);
 ```
