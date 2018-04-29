@@ -7,7 +7,7 @@ yarn-error.log
 nbproject
 .idea
 .netbeans.xml
-.Rdata
+.RData
 .Rhistory
 
 # GH pages
