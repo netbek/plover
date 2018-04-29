@@ -75,9 +75,9 @@ vegaEmbed("#single", spec, opts);
 // Generate Vega-Lite spec
 var spec = toVega(data)
   .config(theme)
-  .circle()
   .column('species', 'nominal')
-  .color('species', 'nominal')
+  .circle()
+  .color('species', 'nominal', {legend: null})
   .x('petalLength')
   .y('sepalLength')
   .spec;

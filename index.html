@@ -187,9 +187,9 @@ vegaEmbed("#single", spec, opts);
 <pre class="js"><code>// Generate Vega-Lite spec
 var spec = toVega(data)
   .config(theme)
-  .circle()
   .column(&#39;species&#39;, &#39;nominal&#39;)
-  .color(&#39;species&#39;, &#39;nominal&#39;)
+  .circle()
+  .color(&#39;species&#39;, &#39;nominal&#39;, {legend: null})
   .x(&#39;petalLength&#39;)
   .y(&#39;sepalLength&#39;)
   .spec;
@@ -206,9 +206,9 @@ vegaEmbed(&quot;#multiple&quot;, spec, opts);</code></pre>
 // Generate Vega-Lite spec
 var spec = toVega(data)
   .config(theme)
-  .circle()
   .column('species', 'nominal')
-  .color('species', 'nominal')
+  .circle()
+  .color('species', 'nominal', {legend: null})
   .x('petalLength')
   .y('sepalLength')
   .spec;
