@@ -1,0 +1,48 @@
+{
+  "name": "plover",
+  "version": "0.0.1",
+  "description": "An approach to using Vega in R Markdown",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/netbek/plover"
+  },
+  "scripts": {
+    "css": "node-sass-chokidar vega/src/css/ -o vega/css && postcss vega/css/*.css --use autoprefixer -d vega/css",
+    "js": "browserify vega/src/js/bundle.js -o vega/js/bundle.js",
+    "build": "npm run css && npm run js",
+    "postinstall": "npm run build"
+  },
+  "author": {
+    "name": "Hein Bekker",
+    "email": "hein@netbek.co.za",
+    "url": "http://netbek.co.za"
+  },
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/netbek/plover/issues"
+  },
+  "browserslist": [
+    "last 5 years",
+    "android >= 2",
+    "bb >= 6",
+    "chrome >= 21",
+    "edge >= 12",
+    "firefox >= 28",
+    "ie >= 8",
+    "ios >= 6",
+    "op_mini all",
+    "op_mob >= 12",
+    "opera >= 12",
+    "safari >= 6",
+    "samsung >= 5"
+  ],
+  "dependencies": {
+    "autoprefixer": "^8.4.1",
+    "node-sass-chokidar": "^1.2.2",
+    "postcss-cli": "^5.0.0",
+    "to-vega": "^0.1.6",
+    "vega-embed": "^3.8.0"
+  },
+  "devDependencies": {}
+}
