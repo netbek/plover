@@ -6,37 +6,37 @@ An approach to using Vega in R Markdown.
 
 1. Install system dependencies:
 
-  ```
-  sudo apt-get install build-essential curl g++ gcc python-dev
-  ```
+    ```
+    sudo apt-get install build-essential curl g++ gcc python-dev
+    ```
 
 2. Install NVM and Node 8.x:
 
-  ```
-  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
-  source ~/.bashrc
-  nvm install v8.9.4
-  nvm alias default v8.9.4
-  ```
+    ```
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
+    source ~/.bashrc
+    nvm install v8.9.4
+    nvm alias default v8.9.4
+    ```
 
 3. Install global Node dependencies:
 
-  ```
-  npm install -g browserify
-  ```
+    ```
+    npm install -g browserify
+    ```
 
 4. Install local Node dependencies:
 
-  ```
-  cd /path/to/plover
-  npm install
-  ```
+    ```
+    cd /path/to/plover
+    npm install
+    ```
 
 5. Install R packages:
 
-  ```
-  install.packages(c("jsonlite", "purrr", "rmarkdown"))
-  ```
+    ```
+    install.packages(c("jsonlite", "purrr", "rmarkdown"))
+    ```
 
 ## Usage
 
