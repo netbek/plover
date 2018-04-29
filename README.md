@@ -19,20 +19,14 @@ An approach to using Vega in R Markdown.
     nvm alias default v8.9.4
     ```
 
-3. Install global Node dependencies:
-
-    ```
-    npm install -g browserify
-    ```
-
-4. Install local Node dependencies:
+3. Install local Node dependencies:
 
     ```
     cd /path/to/plover
     npm install
     ```
 
-5. Install R packages:
+4. Install R packages:
 
     ```
     install.packages(c("jsonlite", "purrr", "rmarkdown"))

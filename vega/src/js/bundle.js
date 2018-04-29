@@ -1,2 +1,4 @@
-global.toVega = require('to-vega');
-global.vegaEmbed = require('vega-embed');
+import toVega from "to-vega";
+import vegaEmbed from "vega-embed";
+
+export { toVega, vegaEmbed };
