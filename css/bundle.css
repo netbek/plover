@@ -1,2 +1,8 @@
+#vg-tooltip-element {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace !important;
+  font-size: 12px !important; }
+  #vg-tooltip-element.light-theme td.key,
+  #vg-tooltip-element.light-theme td.value {
+    color: inherit !important; }
 
-/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJidW5kbGUuY3NzIn0= */
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImJ1bmRsZS5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSwrRUFBK0U7RUFDL0UsMkJBQTJCLEVBQUU7RUFDN0I7O0lBRUUsMEJBQTBCLEVBQUUiLCJmaWxlIjoiYnVuZGxlLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIiN2Zy10b29sdGlwLWVsZW1lbnQge1xuICBmb250LWZhbWlseTogQ29uc29sYXMsIFwiTGliZXJhdGlvbiBNb25vXCIsIE1lbmxvLCBDb3VyaWVyLCBtb25vc3BhY2UgIWltcG9ydGFudDtcbiAgZm9udC1zaXplOiAxMnB4ICFpbXBvcnRhbnQ7IH1cbiAgI3ZnLXRvb2x0aXAtZWxlbWVudC5saWdodC10aGVtZSB0ZC5rZXksXG4gICN2Zy10b29sdGlwLWVsZW1lbnQubGlnaHQtdGhlbWUgdGQudmFsdWUge1xuICAgIGNvbG9yOiBpbmhlcml0ICFpbXBvcnRhbnQ7IH1cbiJdfQ== */

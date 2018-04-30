@@ -54,9 +54,9 @@ cat(paste('<script>var data = ', toJSON(data), ';</script>', sep = ""))
 var spec = toVega(data)
   .config(theme)
   .circle()
-  .color('species', 'nominal')
-  .x('petalLength')
-  .y('sepalLength')
+    .x('petalLength')
+    .y('sepalLength')
+    .color('species', 'nominal')
   .spec;
 
 // Declare Vega embed config
@@ -66,7 +66,7 @@ var opts = {
 };
 
 // Embed visualisation
-vegaEmbed("#single", spec, opts);
+vegaEmbed('#single', spec, opts);
 ```
 
 <div id="multiple"></div>
@@ -77,10 +77,16 @@ var spec = toVega(data)
   .config(theme)
   .column('species', 'nominal')
   .circle()
-  .color('species', 'nominal', {legend: null})
-  .x('petalLength')
-  .y('sepalLength')
+    .color('species', 'nominal', { legend: null })
+    .x('petalLength')
+    .y('sepalLength')
   .spec;
+
+// Add tooltip to spec
+spec.encoding.tooltip = [
+  { field: 'petalLength', type: 'q' },
+  { field: 'sepalLength', type: 'q' }
+];
 
 // Declare Vega embed config
 var opts = {
@@ -89,5 +95,57 @@ var opts = {
 };
 
 // Embed visualisation
-vegaEmbed("#multiple", spec, opts);
+vegaEmbed('#multiple', spec, opts);
+```
+
+<div id="polynomial-fit"></div>
+
+```{js render_polynomial_fit}
+// Fit data to polynomial curve
+var fitData = regression
+  .polynomial(
+    data.map(function(d) {
+      return [d.petalLength, d.sepalLength];
+    })
+  )
+  .points.map(function(d) {
+    return { x: d[0], y: d[1] };
+  });
+
+// Generate Vega-Lite spec
+var spec = toVega()
+  .config(theme)
+  .layer()
+    .data(data)
+    .layer()
+      .circle()
+        .x('petalLength')
+        .y('sepalLength')
+        .color(null, null, { value: 'blue' })
+      .end()
+    .add()
+    .data(fitData)
+    .layer()
+      .line()
+        .x('x', null, { axis: null })
+        .y('y', null, { axis: null })
+        .color(null, null, { value: 'red' })
+      .end()
+    .end()
+  .spec;
+
+// Add tooltip to spec
+spec.layer[0].layer[0].encoding.tooltip = [
+  { field: 'petalLength', type: 'q' },
+  { field: 'sepalLength', type: 'q' }
+];
+
+// Declare Vega embed config
+var opts = {
+  actions: false,
+  renderer: 'canvas'
+};
+
+// Embed visualisation
+vegaEmbed('#polynomial-fit', spec, opts);
 ```

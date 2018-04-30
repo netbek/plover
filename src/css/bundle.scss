@@ -1,0 +1,11 @@
+#vg-tooltip-element {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace !important;
+  font-size: 12px !important;
+
+  &.light-theme {
+    td.key,
+    td.value {
+      color: inherit !important;
+    }
+  }
+}
