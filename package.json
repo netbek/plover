@@ -1,6 +1,6 @@
 {
   "name": "plover",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An approach to using Vega in R Markdown",
   "main": "index.js",
   "repository": {
@@ -51,6 +51,7 @@
     "gh-pages": "^1.1.0",
     "node-sass-chokidar": "^1.2.2",
     "postcss-cli": "^5.0.0",
+    "regression": "^2.0.1",
     "to-vega": "^0.1.6",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "vega-embed": "^3.8.0",
