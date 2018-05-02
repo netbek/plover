@@ -1,12 +1,11 @@
-const path = require("path");
-const webpack = require("webpack");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const { browserslist } = require("./package.json");
+const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const {browserslist} = require('./package.json');
 
 module.exports = {
   resolve: {
-    extensions: [".js"],
-    modules: ["node_modules/", "vega/src/js/"]
+    extensions: ['.js'],
+    modules: ['node_modules/', 'vega/src/js/']
   },
   node: {
     global: true
@@ -15,43 +14,43 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        loader: "babel-loader?cacheDirectory",
+        loader: 'babel-loader?cacheDirectory',
         options: {
           babelrc: false,
           comments: false,
           env: {
             development: {
               plugins: [
-                "transform-object-assign",
-                ["transform-object-rest-spread", { useBuiltIns: false }],
-                "transform-remove-strict-mode"
+                'transform-object-assign',
+                ['transform-object-rest-spread', {useBuiltIns: false}],
+                'transform-remove-strict-mode'
               ]
             },
             production: {
               plugins: [
-                "transform-object-assign",
-                ["transform-object-rest-spread", { useBuiltIns: false }],
-                "transform-remove-strict-mode"
+                'transform-object-assign',
+                ['transform-object-rest-spread', {useBuiltIns: false}],
+                'transform-remove-strict-mode'
               ]
             }
           },
           presets: [
             [
-              "env",
+              'env',
               {
                 exclude: [
-                  "transform-async-to-generator",
-                  "transform-regenerator"
+                  'transform-async-to-generator',
+                  'transform-regenerator'
                 ],
                 loose: true,
-                modules: "commonjs",
+                modules: 'commonjs',
                 targets: {
                   browsers: browserslist
                 },
                 useBuiltIns: false
               }
             ],
-            "stage-2"
+            'stage-2'
           ]
         }
       }
