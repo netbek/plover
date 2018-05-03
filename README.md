@@ -1,8 +1,8 @@
-# plover
+# Plover
 
 An approach to using Vega in R Markdown.
 
-## Demo
+## Examples
 
 [netbek.github.io/plover](https://netbek.github.io/plover)
 
