@@ -40,7 +40,7 @@ An approach to using Vega in R Markdown.
 
 To get started, open `/vega/index.Rmd` in RStudio.
 
-A Vega-Lite spec can be supplied in long-form, or generated with the To-Vega library, as done in this example.
+A Vega-Lite spec can be supplied in long-form, or generated with Finch, as done in this example.
 
 A global theme is stored in `/vega/theme.json`. Remember to knit the document after making changes.
 
