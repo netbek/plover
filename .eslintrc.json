@@ -8,6 +8,10 @@
     "mocha": true,
     "node": true
   },
+  "globals": {
+    "vega": true,
+    "vegaEmbed": true
+  },
   "plugins": [
     "dollar-sign",
     "html",

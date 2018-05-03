@@ -56,6 +56,10 @@ module.exports = {
       }
     ]
   },
+  externals: {
+    vega: 'vega',
+    'vega-embed': 'vegaEmbed'
+  },
   plugins: [
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
