@@ -46,7 +46,7 @@ A global theme is stored in `/vega/theme.json`. Remember to knit the document af
 
 ## Resources
 
-* [To-Vega: methods for generating Vega-Lite specifications](https://github.com/gjmcn/to-vega/blob/master/README.md#methods)
+* [Finch: Vega-Lite specification generator](https://github.com/netbek/finch)
 * [Vega-Lite: specifications](https://vega.github.io/vega-lite/docs/spec.html)
 * [Vega-Lite: theme configuration](https://vega.github.io/vega-lite/docs/config.html)
 
