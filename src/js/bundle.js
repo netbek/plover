@@ -1,5 +1,4 @@
-import regression from "regression";
-import toVega from "to-vega";
-import vegaEmbed from "vega-embed";
+import finch from '@netbek/finch';
+import regression from 'regression';
 
-export { regression, toVega, vegaEmbed };
+export {finch, regression};
