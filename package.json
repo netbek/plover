@@ -39,7 +39,7 @@
     "samsung >= 5"
   ],
   "dependencies": {
-    "@netbek/finch": "0.0.2",
+    "@netbek/finch": "0.0.8",
     "regression": "^2.0.1",
     "vega-embed": "^3.8.0"
   },

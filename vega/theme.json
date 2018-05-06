@@ -2,27 +2,51 @@
   "axis": {
     "domainColor": "#252525",
     "domainWidth": 1,
-    "gridColor": "#CCC",
+    "gridColor": "#ccc",
+    "gridDash": [
+      3,
+      3
+    ],
+    "labelColor": "#252525",
     "labelFont": "Consolas, \"Liberation Mono\", Menlo, Courier, monospace",
     "labelFontSize": 12,
+    "labelFontWeight": "normal",
+    "titleColor": "#252525",
     "titleFont": "Consolas, \"Liberation Mono\", Menlo, Courier, monospace",
     "titleFontSize": 12,
-    "titleFontWeight": "normal"
+    "titleFontWeight": "bold"
+  },
+  "bar": {
+    "fill": "#1f77b4"
   },
   "legend": {
     "labelFont": "Consolas, \"Liberation Mono\", Menlo, Courier, monospace",
     "labelFontSize": 12,
+    "labelFontWeight": "normal",
     "titleFont": "Consolas, \"Liberation Mono\", Menlo, Courier, monospace",
-    "titleFontSize": 12
+    "titleFontSize": 12,
+    "titleFontWeight": "bold"
+  },
+  "line": {
+    "stroke": "#1f77b4"
   },
   "style": {
     "guide-title": {
       "font": "Consolas, \"Liberation Mono\", Menlo, Courier, monospace",
-      "fontSize": 12
+      "fontSize": 12,
+      "fontWeight": "bold"
     },
     "guide-label": {
       "font": "Consolas, \"Liberation Mono\", Menlo, Courier, monospace",
-      "fontSize": 12
+      "fontSize": 12,
+      "fontWeight": "normal"
     }
+  },
+  "title": {
+    "color": "#252525",
+    "font": "Consolas, \"Liberation Mono\", Menlo, Courier, monospace",
+    "fontSize": 13,
+    "fontWeight": "bold",
+    "offset": 12
   }
 }
