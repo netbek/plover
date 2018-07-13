@@ -42,7 +42,7 @@
     "eslint-scope": "3.7.1"
   },
   "dependencies": {
-    "@netbek/finch": "0.0.8",
+    "@netbek/finch": "0.0.9",
     "regression": "^2.0.1",
     "vega-embed": "^3.8.0"
   },
