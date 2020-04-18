@@ -1,6 +1,6 @@
 {
   "name": "plover",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "An approach to using Vega in R Markdown",
   "main": "index.js",
   "repository": {
