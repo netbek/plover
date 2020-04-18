@@ -18,22 +18,6 @@ module.exports = {
         options: {
           babelrc: false,
           comments: false,
-          // env: {
-          //   development: {
-          //     plugins: [
-          //       'transform-object-assign',
-          //       ['transform-object-rest-spread', {useBuiltIns: false}],
-          //       'transform-remove-strict-mode'
-          //     ]
-          //   },
-          //   production: {
-          //     plugins: [
-          //       'transform-object-assign',
-          //       ['transform-object-rest-spread', {useBuiltIns: false}],
-          //       'transform-remove-strict-mode'
-          //     ]
-          //   }
-          // },
           env: {
             development: {
               plugins: [
@@ -79,8 +63,7 @@ module.exports = {
                 },
                 useBuiltIns: false
               }
-            ],
-            '@babel/preset-react'
+            ]
           ]
         }
       }
